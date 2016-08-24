@@ -82,3 +82,29 @@ function comp(array1, array2){
   }
   return true;
 }
+
+// In English and programming, groups can be made using symbols such as "()" and "{}" that change meaning. However, these groups must be closed in the correct order to maintain correct syntax.
+
+function groupCheck(s){
+  let brackets = { 
+    open: { 
+      '{':1, 
+      '[':2, 
+      '(':3 },
+    close: { 
+      '}':1,
+      ']':2,
+      ')':3
+    }
+  },
+  stack = [];
+  for (let v of s) {
+    if (brackets.open[v]) { stack.push(v); }
+    if (brackets.close[v]) {
+      if (brackets.close[v] !== brackets.open[stack.pop()]) {
+        return false;
+      }
+    }
+  }
+  return stack.length === 0;
+}
