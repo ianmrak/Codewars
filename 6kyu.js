@@ -108,3 +108,13 @@ function groupCheck(s){
   }
   return stack.length === 0;
 }
+
+// Move the first letter of each word to the end of it, then add 'ay' to the end of the word.
+
+function pigIt(str){
+  return str.split(' ').map((word) => {
+    let first = word.split('')[0],
+    rest = word.split('').slice(1).join('');
+    return `${rest}${first}${'ay'}`;
+  }).join(' ');
+}
