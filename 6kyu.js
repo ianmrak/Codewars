@@ -64,3 +64,21 @@ function findRegion(val) {
   if (val > 2 && val < 6) { return 2; }
   else { return 3; }
 }
+
+// Given two arrays a and b write a function comp(a, b) (compSame(a, b) in Clojure) that checks whether the two arrays have the "same" elements, with the same multiplicities. "Same" means, here, that the elements in b are the elements in a squared, regardless of the order.
+
+function comp(array1, array2){
+  if (!array2 || !array1) { return false; }
+  if (!array1.length || !array2.length) { return true; }
+  let squares = {};
+  for (let n of array2) {
+    if (!squares[n]) { squares[n] = 0; }
+    squares[n]++;
+  }
+  for (let n of array1) {
+    let num = n*n;
+    if (!squares[num]) { return false; }
+    squares[num]-=1;
+  }
+  return true;
+}
