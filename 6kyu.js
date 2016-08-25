@@ -118,3 +118,38 @@ function pigIt(str){
     return `${rest}${first}${'ay'}`;
   }).join(' ');
 }
+
+// Write a function which takes in numbers num1 and num2 and returns 1 if there is a straight triple of a number at any place in num1 and also a straight double of the same number in num2.
+
+function tripledouble(num1, num2) {
+  let arr1 = num1.toString().split(''),
+  arr2 = num2.toString().split(''),
+  cache1 = {},
+  cache2 = {};
+  findPairs(arr1, cache1);
+  findPairs(arr2, cache2);
+
+  for (let val in cache1) {
+    if (cache1[val] > 2 && cache2[val]) {
+      return 1;
+    }
+  }
+  return 0;
+}
+
+function findPairs(arr, cache) {
+  let counter = 1;
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] === arr[i-1]) {
+      counter++;
+      if (i === arr.length-1) {
+        cache[arr[i]] = counter;
+        continue;
+      }
+    }
+    else {
+      if (counter > 1) { cache[arr[i-1]] = counter; }
+      counter = 1;
+    }
+  }
+}
