@@ -172,3 +172,22 @@ function tripledouble(num1, num2) {
   }
   return 0;
 }
+
+// Given a positive integer of up to 16 digits, return true if it is a valid credit card number, and false if it is not.
+
+function validate(n){
+  let arr = n.toString().split(''),
+  start = arr.length % 2 === 0 ? 0 : 1,
+  counter = start === 0 ? 1 : 0;
+  for (let i = start; i < arr.length; i++) {
+    counter++;
+    let curr = parseInt(arr[i]);
+    let temp = curr;
+    if (counter > 1) {
+      curr = curr * 2;
+      counter = 0;
+    }
+    arr[i] = curr > 9 ? curr - temp : curr; 
+  }
+  return arr.reduce((acc,curr) => acc + curr )%10 === 0;
+}
