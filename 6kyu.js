@@ -2,6 +2,14 @@
 
 function findOdd(A) {
   let vals = A.reduce((acc, c) => {
+    n tripledouble(num1, num2) {
+      for (let i = 0; i < 10; i++) {
+        if (new RegExp(`${i}{3}`).test(num1) && new RegExp(`${i}{2}`).test(num2)) {
+          return 1;
+        }
+      }
+      return 0;
+    }
     if (!acc[c]) { acc[c] = 1; }
     else { acc[c]++; } 
     return acc;
@@ -152,4 +160,15 @@ function findPairs(arr, cache) {
       counter = 1;
     }
   }
+}
+
+// BEST SOLUTION - GOOD LORD
+
+function tripledouble(num1, num2) {
+  for (let i = 0; i < 10; i++) {
+    if (new RegExp(`${i}{3}`).test(num1) && new RegExp(`${i}{2}`).test(num2)) {
+      return 1;
+    }
+  }
+  return 0;
 }
