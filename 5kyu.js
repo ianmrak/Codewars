@@ -2,10 +2,10 @@
 
 var moveZeros = function (arr) {
   let nums = [],
-      zeros = [];
+  zeros = [];
   arr.forEach((val) => {
-      if (val === 0) { zeros.push(val); }
-      else { nums.push(val); }
+    if (val === 0) { zeros.push(val); }
+    else { nums.push(val); }
   });
   return [...nums, ...zeros];
 }
@@ -29,4 +29,23 @@ function cakes(recipe, available) {
     a = totals[a] > totals[b] ? b : a;
     return a;
   })];
+}
+
+// At a job interview, you are challenged to write an algorithm to check if a given string, s, can be formed from two other strings, part1 and part2.
+//
+// The restriction is that the characters in part1 and part2 are in the same order as in s.
+
+function isMerge(s, part1, part2) {
+  let p1 = part1.split('');
+  let p2 = part2.split('');
+  let str = '';
+  for (let l of s) {
+    if (p1[0] === l) {
+      str += p1.shift();
+    }
+    if (p2[0] === l) {
+      str += p2.shift();
+    }
+  }
+  return str === s;
 }
