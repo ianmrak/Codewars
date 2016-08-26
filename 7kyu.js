@@ -78,3 +78,9 @@ function calculate(string) {
   }
   return math[1] === 'gains' ? math[0]+math[2] : math[0]-math[2];
 }
+
+// GOD MODE
+
+function calculate(string) {
+  return eval(string.match(/\d+|lose|gain/g).join("").replace("lose", "-").replace("gain", "+")) 
+}
