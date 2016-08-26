@@ -10,3 +10,23 @@ function pickPeaks(arr){
   }
   return out;
 }
+
+// In this kata you have to create all permutations of an input string and remove duplicates, if present. This means, you have to shuffle all letters from the input in all possible orders.
+
+function permutations(string) {
+  let perms = {};
+  function permute(input, current) {
+    if (!input.length) {
+      perms[current.join('')] = true;
+    }
+    for (let i = 0; i < input.length; i++) {
+      let newCurrent = current.slice();
+      let newInput = input.slice();
+      newCurrent.push(input[i]);
+      newInput.splice(i,1);
+      permute(newInput, newCurrent);
+    }
+  }
+  permute(string.split(''), []);
+  return Object.keys(perms);
+}
