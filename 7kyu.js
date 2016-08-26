@@ -63,3 +63,18 @@ function alphabetPosition(text) {
   return nums.join(' ');
 }
 
+// Given a string of words and numbers. Extract the expression including: 1. the operator: either addition or subtraction 2. the two numbers that we are operating on.
+
+function calculate(string) {
+  let arr = string.split(' ');
+  let math = [];
+  for (let i of arr) {
+    if (parseInt(i)) {
+      math.push(parseInt(i));
+    }
+    if (i === 'gains' || i === 'loses') {
+      math.push(i);
+    }
+  }
+  return math[1] === 'gains' ? math[0]+math[2] : math[0]-math[2];
+}
