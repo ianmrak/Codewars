@@ -53,9 +53,6 @@ function Event() {
     }, events);
   }
   this.emit = function(...args) {
-    let copy = events.slice();
-    for (let e of copy) {
-      e.apply(this, args);
-    }
+    events.slice().forEach((e) => e.apply(this, args));
   }
 }
