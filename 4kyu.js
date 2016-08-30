@@ -30,3 +30,32 @@ function permutations(string) {
   permute(string.split(''), []);
   return Object.keys(perms);
 }
+
+// Advanced Events
+
+function Event() {
+  let events = [];
+  this.subscribe = function(...args) {
+    return args.reduce((e, c) => {
+      if (c instanceof Function) { e.push(c); }
+      return e;
+    }, events);
+  }
+  this.unsubscribe = function(...args) {
+    events.reduceRight((e, c, ci) => {
+      args.forEach((arg, ai) => {
+        if (arg === c) {
+          args.splice(ai, 1);
+          e.splice(ci,1); 
+        }
+      });
+      return e;
+    }, events);
+  }
+  this.emit = function(...args) {
+    let copy = events.slice();
+    for (let e of copy) {
+      e.apply(this, args);
+    }
+  }
+}
