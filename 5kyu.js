@@ -49,3 +49,17 @@ function isMerge(s, part1, part2) {
   }
   return str === s;
 }
+
+// Product of consecutive Fib numbers
+
+function productFib(prod){
+  let a = 1,
+  b = 1;
+  while (b * a < prod) {
+    [a, b] = [b, a+b];
+    if (b * a === prod) {
+      return [a, b, true]
+    }
+  }
+  return [a, b, false];
+}
