@@ -56,3 +56,43 @@ function Event() {
     events.slice().forEach((e) => e.apply(this, args));
   }
 }
+
+// Coordinates Validator
+// You need to create a function that will validate if given parameters are valid geographical coordinates.
+
+function isValidCoordinates(coordinates){
+  let coords = coordinates.split(',');
+  if (coords.length > 2) { return false; }
+  if (Math.abs(parseInt(coords[0])) > 90 || Math.abs(parseInt(coords[1])) > 180) { 
+    return false; 
+  }
+  for (let i = 0; i < coords.length; i++) {
+    let coord = coords[i].trim();
+    if (coord.slice(1).match(/-/)) { return false; }
+    if (coord.match(/[a-zA-Z]/)) { return false; }
+    if (coord.split('.').length > 2) { return false; }
+    if (isNaN(parseInt(coord))) { return false; }
+  }
+  return true;
+}
+
+// If a value is provided then the path will be set to that value. Any objects not present within the path will be created automatically in order for the path to be successfully set.
+
+function namespace(root, path, value){
+  let pathList = path.split('.');
+  if (value) {
+    return pathList.reduceRight((obj, c) => { 
+      obj[c] = value || obj;
+      value = null;
+      return obj;
+    }, root);
+  }
+  else {
+    let out = root;
+    for (let k of pathList) {
+      if (!out[k]) { return null; }
+      out = out[k];
+    }
+    return out;
+  }
+}
